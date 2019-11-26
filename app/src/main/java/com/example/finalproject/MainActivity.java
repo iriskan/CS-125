@@ -3,6 +3,7 @@ package com.example.finalproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -10,12 +11,13 @@ import android.view.MotionEvent;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
-    private int[] path;
+    private double[] path;
     private MapView mapView;
     private CountDownTimer timer;
     private int dy1;
     private int dx;
     private int dy2;
+    private MediaPlayer mapMusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +25,34 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mapView = (MapView) findViewById(R.id.mapView);
         mapView.drawMap();
-        path = new int[4];
+        mapMusic = MediaPlayer.create(MainActivity.this, R.raw.mapmusic);
+        path = new double[4];
         timer = null;
         gymButton();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mapMusic.stop();
+        try {
+            mapMusic.prepare();
+        } catch(Exception e) {
+        }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("resume????", "yes");
+        mapMusic.seekTo(0);
+        mapMusic.start();
+        mapMusic.setLooping(true);
     }
 
     /**
@@ -40,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                    Log.e("passed", "it passed if statement");
                    int touchX = (int) e.getX();
                    int touchY = (int) e.getY();
-                   int[] possiblepath = mapView.aGymPath(touchX, touchY);
+                   double[] possiblepath = mapView.aGymPath(touchX, touchY);
                    Log.e("possible path", "null????" + possiblepath);
                    if (possiblepath != null) {
                        Log.e("sighhhhh", "possible path is null");
@@ -60,13 +87,13 @@ public class MainActivity extends AppCompatActivity {
                                Log.e("onTick", "path[0]: " + path[0] + ", path[1]: " + path[1] + "path[2]" + path[2]);
                                if (path[0] > 0) {
                                    path[0] -= dy1;
-                                   mapView.setPosition(0, dy1, path[3]);
+                                   mapView.setPosition(0, dy1, (int) path[3]);
                                } else if (path[1] > 0) {
                                    path[1] -= dx;
-                                   mapView.setPosition(dx, 0, path[3]);
+                                   mapView.setPosition(dx, 0, (int) path[3]);
                                } else if (path[2] > 0) {
                                    path[2] -= dy2;
-                                   mapView.setPosition(0, dy2, path[3]);
+                                   mapView.setPosition(0, dy2, (int) path[3]);
                                }
                            }
 

@@ -6,4 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".BattleActivity">
 
+    <Button
+        android:id="@+id/run"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="294dp"
+        android:layout_marginTop="638dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="45dp"
+        android:fontFamily="monospace"
+        android:text="run"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/yourPlatform"
+        android:layout_width="316dp"
+        android:layout_height="165dp"
+        app:srcCompat="@drawable/platform"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="368dp" />
+
+    <ImageView
+        android:id="@+id/opponentPlatform"
+        android:layout_width="385dp"
+        android:layout_height="122dp"
+        app:srcCompat="@drawable/platform"
+        tools:layout_editor_absoluteX="82dp"
+        tools:layout_editor_absoluteY="152dp" />
+
+    <ImageView
+        android:id="@+id/challenmandere"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/backsidepokemon"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="361dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
