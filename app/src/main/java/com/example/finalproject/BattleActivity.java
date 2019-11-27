@@ -10,7 +10,10 @@ import android.widget.Button;
 
 public class BattleActivity extends AppCompatActivity {
     private MediaPlayer battleMusic;
+    private MediaPlayer runSound;
     // I used this for my graphics: https://github.com/hydrozoa-yt/pokemon/tree/master/res
+    // I included in the drawable folder all the pokemon for each gym
+    // the last element in path array in main activity contains gym number
     /**
      * a gym is clicked, specific gym battle generated
      * @param savedInstanceState
@@ -23,13 +26,16 @@ public class BattleActivity extends AppCompatActivity {
         // create battle music
         battleMusic = MediaPlayer.create(BattleActivity.this, R.raw.battlemusic);
 
+        //create run sound when exit battle
+        runSound = MediaPlayer.create(BattleActivity.this, R.raw.runbutton);
+
         // run button goes back to prev activity w/ fade in/out transition
-        Button startOverButton = findViewById(R.id.run);
-        startOverButton.setOnClickListener(new View.OnClickListener(){
+        Button runButton = findViewById(R.id.run);
+        runButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(final View v) {
-
+                runSound.start();
                 finish();//go back to the previous Activity
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -43,6 +49,7 @@ public class BattleActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        runSound.start();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
     @Override

@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private int dx;
     private int dy2;
     private MediaPlayer mapMusic;
+    private MediaPlayer gymButtonSound;
+    private MediaPlayer enterDoorSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         mapMusic = MediaPlayer.create(MainActivity.this, R.raw.mapmusic);
         path = new double[4];
         timer = null;
+        gymButtonSound = MediaPlayer.create(MainActivity.this, R.raw.startbutton);
+        enterDoorSound = MediaPlayer.create(MainActivity.this,R.raw.enterdoor);
         gymButton();
     }
 
@@ -70,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                    double[] possiblepath = mapView.aGymPath(touchX, touchY);
                    Log.e("possible path", "null????" + possiblepath);
                    if (possiblepath != null) {
+                       gymButtonSound.start();
                        Log.e("sighhhhh", "possible path is null");
                        for (int i = 0; i < path.length; i++) {
                            path[i] = possiblepath[i];
@@ -100,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                            @Override
                            public void onFinish() {
                                //NEED TO ADD BATTLE ACTIVITY INTENT
+                               enterDoorSound.start();
                                Intent battleIntent = new Intent(MainActivity.this, BattleActivity.class);
                                mapView.restoreOriginal();
                                timer = null;

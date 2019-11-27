@@ -24,6 +24,8 @@ public class StartActivity extends AppCompatActivity {
     private Button startButton;
     private Animation blinkAnimation;
     private MediaPlayer mediaStartPlayer;
+    private MediaPlayer startButtonSound;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,8 @@ public class StartActivity extends AppCompatActivity {
 
         //bg music
         mediaStartPlayer= MediaPlayer.create(StartActivity.this, R.raw.startmusic);
-        //mediaStartPlayer.start();
+        //start button sound
+        startButtonSound = MediaPlayer.create(StartActivity.this,R.raw.startbutton);
         // Get the widget reference from XML layout
         startLayout = findViewById(R.id.start);
         startButton = findViewById(R.id.startbutton);
@@ -48,6 +51,7 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Start the blink animation (fade in and fade out animation)
+                startButtonSound.start();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

@@ -43,6 +43,7 @@ public class MapView extends View {
     private boolean vertical;
     private boolean west;
     private int gait;
+    private int standing;
     public MapView(Context context, AttributeSet attrs) {
         super(context, attrs);
         image = ResourcesCompat.getDrawable(context.getResources(), R.drawable.map, null);
@@ -120,7 +121,8 @@ public class MapView extends View {
         currentY = y0;
         vertical = true;
         west = true;
-        gait = 1;
+        gait = 0;
+        standing = 0;
     }
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -177,7 +179,10 @@ public class MapView extends View {
         brendanEast0.setBounds(brenBounds);
         brendanEast1.setBounds(brenBounds);
         brendanEast2.setBounds(brenBounds);
-        if (vertical) {
+        if (standing == 0) {
+            brendanNorth1.draw(c);
+            standing++;
+        } else if (vertical) {
             if (gait == 0) {
                 brendanNorth0.draw(c);
             } else if (gait == 1) {
@@ -242,5 +247,6 @@ public class MapView extends View {
     public void restoreOriginal() {
         currentX = x0;
         currentY = y0;
+        standing = 0;
     }
 }
