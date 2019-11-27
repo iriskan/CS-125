@@ -5,7 +5,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -79,5 +81,21 @@ public class StartActivity extends AppCompatActivity {
         mediaStartPlayer.seekTo(0);
         mediaStartPlayer.start();
         mediaStartPlayer.setLooping(true);
+    }
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(R.drawable.pikachuu)
+                .setTitle("Exit Game?")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("CANCEL", null)
+                .show();
     }
 }
