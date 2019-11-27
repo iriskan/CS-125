@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
                                mapView.restoreOriginal();
                                timer = null;
                                startActivity(battleIntent);
+                               overridePendingTransition(R.anim.fade_battle_in, R.anim.fade_battle_out);
                            }
                        };
                        timer.start();

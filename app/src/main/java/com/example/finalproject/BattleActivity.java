@@ -37,7 +37,7 @@ public class BattleActivity extends AppCompatActivity {
             public void onClick(final View v) {
                 runSound.start();
                 finish();//go back to the previous Activity
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                overridePendingTransition(R.anim.fade_battle_in, R.anim.fade_battle_out);
             }
         });
     }
