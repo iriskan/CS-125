@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                        for (int i = 0; i < path.length; i++) {
                            path[i] = possiblepath[i];
                        }
-                       double div = (5000 / 150) / 3;
+                       double div = (5000.0 / 150) / 3;
                        dy1 = (int) (path[0] / div);
                        dx = (int) (path[1] / div);
                        dy2 = (int) (path[2] / div);

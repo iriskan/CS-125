@@ -24,7 +24,7 @@ public class MapView extends View {
     private int width;
     private int newHeight;
     private int newWidth;
-    private int yScreen;
+    private int yOffSet;
     private Drawable brendanNorth0;
     private Drawable brendanNorth1;
     private Drawable brendanNorth2;
@@ -129,12 +129,12 @@ public class MapView extends View {
         float factor = (float) w / width;
         this.newWidth = w;
         this.newHeight = (int) (factor * height);
-        yScreen = (h - this.newHeight) / 2;
+        yOffSet = (h - this.newHeight) / 2;
         super.onSizeChanged(w, h, oldw, oldh);
         Log.e("new width", "width: " + newWidth);
         Log.e("factor", "factor: " + factor);
-        x0 = newWidth / 2;
-        y0 = newHeight;
+        x0 = newWidth / 2 ;
+        y0 = (int) (460 * factor * scaler + yOffSet);
         currentX = x0;
         currentY = y0;
 
@@ -145,8 +145,8 @@ public class MapView extends View {
         for (int i = 0; i < original.length; i++) {
             int leftBound = (int) (factor * original[i].left * scaler);
             int rightBound = (int) (factor * original[i].right * scaler);
-            int topBound = (int) ((factor * original[i].top * scaler) + yScreen);
-            int bottomBound = (int) ((factor * original[i].bottom * scaler) + yScreen);
+            int topBound = (int) ((factor * original[i].top * scaler) + yOffSet);
+            int bottomBound = (int) ((factor * original[i].bottom * scaler) + yOffSet);
             gyms[i] = new Rect(leftBound, topBound,rightBound, bottomBound);
         }
 
@@ -161,7 +161,7 @@ public class MapView extends View {
     }
     @Override
     protected void onDraw(Canvas c) {
-        Rect newBounds = new Rect(0, yScreen, newWidth, yScreen + newHeight);
+        Rect newBounds = new Rect(0, yOffSet, newWidth, yOffSet + newHeight);
         Log.e("newBounds", "bounds: " + newBounds.toString());
         image.setBounds(newBounds);
         image.draw(c);
