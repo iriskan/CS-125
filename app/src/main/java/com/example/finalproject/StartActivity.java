@@ -2,7 +2,6 @@ package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,6 +17,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 public class StartActivity extends AppCompatActivity {
     private Context mContext;
     private Activity sActivity;
@@ -27,6 +32,8 @@ public class StartActivity extends AppCompatActivity {
     private Animation blinkAnimation;
     private MediaPlayer mediaStartPlayer;
     private MediaPlayer startButtonSound;
+    public static boolean bgSoundOn;
+    public static boolean fxSoundOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,12 @@ public class StartActivity extends AppCompatActivity {
         mediaStartPlayer= MediaPlayer.create(StartActivity.this, R.raw.startmusic);
         //start button sound
         startButtonSound = MediaPlayer.create(StartActivity.this,R.raw.startbutton);
+
+        bgSoundOn = readSoundSetting(StartActivity.this, "bgSound");
+        fxSoundOn = readSoundSetting(StartActivity.this, "fxSound");
+        Log.e("STARTACTIVITY bgsound", "sound: " + bgSoundOn);
+        Log.e("STARTACTIVITY fxSound", "sound: " + fxSoundOn);
+
         // Get the widget reference from XML layout
         startLayout = findViewById(R.id.start);
         startButton = findViewById(R.id.startbutton);
@@ -53,7 +66,9 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Start the blink animation (fade in and fade out animation)
-                startButtonSound.start();
+                if (fxSoundOn) {
+                    startButtonSound.start();
+                }
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -68,19 +83,24 @@ public class StartActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        mediaStartPlayer.stop();
-        try {
-            mediaStartPlayer.prepare();
-        } catch(Exception e) {
+        if (mediaStartPlayer.isPlaying()) {
+            mediaStartPlayer.stop();
+            try {
+                mediaStartPlayer.prepare();
+            } catch(Exception e) {
+            }
         }
     }
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e("resume????", "yes");
+        Log.e("STARTACTIVITY bgsound", "sound: " + bgSoundOn);
+        Log.e("STARTACTIVITY fxSound", "sound: " + fxSoundOn);
         mediaStartPlayer.seekTo(0);
-        mediaStartPlayer.start();
-        mediaStartPlayer.setLooping(true);
+        if (bgSoundOn) {
+            mediaStartPlayer.start();
+            mediaStartPlayer.setLooping(true);
+        }
     }
     @Override
     public void onBackPressed() {
@@ -97,5 +117,35 @@ public class StartActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("CANCEL", null)
                 .show();
+    }
+
+    /**
+     * read sound settings file
+     * @param context
+     * @param fileName
+     * @return
+     */
+    public boolean readSoundSetting(Context context, String fileName) {
+        boolean sound = true;
+        try {
+            InputStream inputStream = context.openFileInput(fileName);
+            if (inputStream != null) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receivedString;
+
+                while ((receivedString = bufferedReader.readLine()) != null) {
+                    if (receivedString.equals("on")) {
+                        sound = true;
+                    } else if (receivedString.equals("off")) {
+                        sound = false;
+                    }
+                }
+                inputStream.close();
+            }
+        } catch (FileNotFoundException e) {
+        } catch (IOException e){
+        }
+        return sound;
     }
 }
