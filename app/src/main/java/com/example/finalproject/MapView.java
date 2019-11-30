@@ -25,6 +25,7 @@ public class MapView extends View {
     private int newHeight;
     private int newWidth;
     private int yOffSet;
+
     private Drawable brendanNorth0;
     private Drawable brendanNorth1;
     private Drawable brendanNorth2;
@@ -34,6 +35,17 @@ public class MapView extends View {
     private Drawable brendanEast0;
     private Drawable brendanEast1;
     private Drawable brendanEast2;
+
+    private Drawable challenNorth0;
+    private Drawable challenNorth1;
+    private Drawable challenNorth2;
+    private Drawable challenWest0;
+    private Drawable challenWest1;
+    private Drawable challenWest2;
+    private Drawable challenEast0;
+    private Drawable challenEast1;
+    private Drawable challenEast2;
+
     private Drawable image;
     private Rect[] original;
     private Rect[] gyms;
@@ -123,6 +135,19 @@ public class MapView extends View {
         west = true;
         gait = 0;
         standing = 0;
+
+        //challenmander walking north
+        challenNorth0 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.challen_north_0, null);
+        challenNorth1 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.challen_north_1, null);
+        challenNorth2 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.challen_north_2, null);
+        //challenmander walking west
+        challenWest0 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.challen_west_0, null);
+        challenWest1 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.challen_west_1, null);
+        challenWest2 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.challen_west_2, null);
+        //challenmander walking east
+        challenEast0 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.challen_east_0, null);
+        challenEast1 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.challen_east_1, null);
+        challenEast2 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.challen_east_2, null);
     }
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -165,6 +190,8 @@ public class MapView extends View {
         Log.e("newBounds", "bounds: " + newBounds.toString());
         image.setBounds(newBounds);
         image.draw(c);
+
+        //set bounds for BRENDAN
         Rect brenBounds = new Rect(currentX - 50, currentY - 50,
                 currentX + 50,currentY + 50);
         //set bounds for north
@@ -179,32 +206,60 @@ public class MapView extends View {
         brendanEast0.setBounds(brenBounds);
         brendanEast1.setBounds(brenBounds);
         brendanEast2.setBounds(brenBounds);
+
+        //set bounds for CHALLENMANDER
+        Rect challenBounds = new Rect(currentX - 25, currentY - 25 + 50,
+                currentX + 25, currentY + 25 + 50);
+        //set bounds for north
+        challenNorth0.setBounds(challenBounds);
+        challenNorth1.setBounds(challenBounds);
+        challenNorth2.setBounds(challenBounds);
+        //set bounds for west
+        challenWest0.setBounds(challenBounds);
+        challenWest1.setBounds(challenBounds);
+        challenWest2.setBounds(challenBounds);
+        //set bounds for east
+        challenEast0.setBounds(challenBounds);
+        challenEast1.setBounds(challenBounds);
+        challenEast2.setBounds(challenBounds);
+
+
         if (standing == 0) {
             brendanNorth1.draw(c);
+            challenNorth1.draw(c);
             standing++;
         } else if (vertical) {
             if (gait == 0) {
                 brendanNorth0.draw(c);
+                challenNorth0.draw(c);
             } else if (gait == 1) {
                 brendanNorth1.draw(c);
+                challenNorth1.draw(c);
             } else {
                 brendanNorth2.draw(c);
+                challenNorth2.draw(c);
             }
         } else if (west) {
             if (gait == 0) {
                 brendanWest0.draw(c);
+                challenWest0.draw(c);
             } else if (gait == 1) {
                 brendanWest1.draw(c);
+                challenWest1.draw(c);
             } else {
                 brendanWest2.draw(c);
+                challenWest2.draw(c);
             }
         } else {
             if (gait == 0) {
                 brendanEast0.draw(c);
+                challenEast0.draw(c);
             } else if (gait == 1) {
                 brendanEast1.draw(c);
+                challenEast1.draw(c);
             } else {
                 brendanEast2.draw(c);
+                challenEast2.draw(c);
             }
         }
     }
