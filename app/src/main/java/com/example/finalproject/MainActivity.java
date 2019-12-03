@@ -2,7 +2,6 @@ package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -16,21 +15,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Switch;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private double[] path;
@@ -244,6 +234,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * write in Sound file settings preferences
+     * @param context which activity context
+     * @param fileName name of the file: sound fx or bg music
+     * @param sound off or on
+     */
     public void soundSetting(Context context, String fileName, String sound) {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(fileName, Context.MODE_PRIVATE));
@@ -251,5 +247,9 @@ public class MainActivity extends AppCompatActivity {
             outputStreamWriter.close();
         } catch (IOException e) {
         }
+    }
+
+    public void showPokemonDialog() {
+
     }
 }
