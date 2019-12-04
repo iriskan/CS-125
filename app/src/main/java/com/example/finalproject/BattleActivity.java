@@ -2,10 +2,14 @@ package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 public class BattleActivity extends AppCompatActivity {
     private MediaPlayer battleMusic;
@@ -79,6 +83,22 @@ public class BattleActivity extends AppCompatActivity {
         if (bgSoundOn) {
             battleMusic.start();
             battleMusic.setLooping(true);
+        }
+    }
+
+    /**
+     * write in nordle or badges file if trainer has badges or nordle
+     * Ex: trainerSetting(BattleActivity.this, "badge1", "yes");
+     * @param context which activity context (should be BattleActivity.this)
+     * @param fileName name of the file: "nordle" or "badge1" or "badge2" ... or "badge8"
+     * @param gotItem put "yes" or "no"
+     */
+    public void trainerSetting(Context context, String fileName, String gotItem) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(fileName, Context.MODE_PRIVATE));
+            outputStreamWriter.write(gotItem);
+            outputStreamWriter.close();
+        } catch (IOException e) {
         }
     }
 }

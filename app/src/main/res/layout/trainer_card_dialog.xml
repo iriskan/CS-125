@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout3"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/trainer_card"
+    android:foregroundGravity="center"
+    android:maxWidth="370dp"
+    android:maxHeight="221.71dp"
+    android:minWidth="370dp"
+    android:minHeight="221.71dp"
+    android:orientation="horizontal"
+    app:layout_anchorGravity="center">
+
+    <ImageView
+        android:id="@+id/challenmander_pfp"
+        android:layout_width="71dp"
+        android:layout_height="105dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="119dp"
+        android:layout_marginEnd="213dp"
+        android:layout_marginBottom="78dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.245"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.543"
+        app:srcCompat="@drawable/challanmanderpokemon" />
+
+    <ImageView
+        android:id="@+id/nordle"
+        android:layout_width="98dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="67dp"
+        android:layout_marginEnd="141dp"
+        android:layout_marginBottom="29dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/challenmander_pfp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/nordle_gym3" />
+
+    <ImageView
+        android:id="@+id/badge1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="89dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/challenmander_pfp"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/badge1" />
+
+    <ImageView
+        android:id="@+id/badge2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="24dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/badge1"
+        app:layout_constraintTop_toBottomOf="@+id/nordle"
+        app:srcCompat="@drawable/badge2" />
+
+    <ImageView
+        android:id="@+id/badge3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="24dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/badge2"
+        app:layout_constraintTop_toBottomOf="@+id/nordle"
+        app:layout_constraintVertical_bias="0.4"
+        app:srcCompat="@drawable/badge3" />
+
+    <ImageView
+        android:id="@+id/badge4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="22dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/badge3"
+        app:layout_constraintTop_toBottomOf="@+id/nordle"
+        app:srcCompat="@drawable/badge4" />
+
+    <ImageView
+        android:id="@+id/badge5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginBottom="18dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/badge4"
+        app:layout_constraintTop_toBottomOf="@+id/nordle"
+        app:srcCompat="@drawable/badge5" />
+
+    <ImageView
+        android:id="@+id/badge6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="187dp"
+        android:layout_marginBottom="19dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/badge5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/badge6" />
+
+    <ImageView
+        android:id="@+id/badge7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="188dp"
+        android:layout_marginBottom="18dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/badge6"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/badge7" />
+
+    <ImageView
+        android:id="@+id/badge8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="186dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginBottom="20dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/badge7"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/badge8" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

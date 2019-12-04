@@ -17,9 +17,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,6 +43,27 @@ public class MainActivity extends AppCompatActivity {
     public static boolean fxSoundOn;
     private AlertDialog.Builder builder;
     private Dialog dialog;
+
+    private AlertDialog.Builder builderTrainer;
+    private Dialog dialogTrainer;
+    public static boolean gotNordle;
+    public static boolean gotBadge1;
+    public static boolean gotBadge2;
+    public static boolean gotBadge3;
+    public static boolean gotBadge4;
+    public static boolean gotBadge5;
+    public static boolean gotBadge6;
+    public static boolean gotBadge7;
+    public static boolean gotBadge8;
+    private ImageView nordle;
+    private ImageView badge1;
+    private ImageView badge2;
+    private ImageView badge3;
+    private ImageView badge4;
+    private ImageView badge5;
+    private ImageView badge6;
+    private ImageView badge7;
+    private ImageView badge8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +162,101 @@ public class MainActivity extends AppCompatActivity {
         gymButtonSound = MediaPlayer.create(MainActivity.this, R.raw.startbutton);
         enterDoorSound = MediaPlayer.create(MainActivity.this, R.raw.enterdoor);
         gymButton();
+
+
+
+        //trainer card
+        //set up trainer card dialog
+        builderTrainer = new AlertDialog.Builder(MainActivity.this);
+        LayoutInflater inflaterTrainer = MainActivity.this.getLayoutInflater();
+        View viewTrainer = inflaterTrainer.inflate(R.layout.trainer_card_dialog, null);
+        builderTrainer.setView(viewTrainer);
+
+        dialogTrainer = builderTrainer.create();
+
+        //image views of nordle and badges
+        nordle = dialog.findViewById(R.id.nordle);
+        badge1 = dialog.findViewById(R.id.badge1);
+        badge2 = dialog.findViewById(R.id.badge2);
+        badge3 = dialog.findViewById(R.id.badge3);
+        badge4 = dialog.findViewById(R.id.badge4);
+        badge5 = dialog.findViewById(R.id.badge5);
+        badge6 = dialog.findViewById(R.id.badge6);
+        badge7 = dialog.findViewById(R.id.badge7);
+        badge8 = dialog.findViewById(R.id.badge8);
+        //booleans if trainer has badges or nordle
+        gotNordle = readTrainerSetting(MainActivity.this, "nordle");
+        gotBadge1 = readTrainerSetting(MainActivity.this, "badge1");
+        gotBadge2 = readTrainerSetting(MainActivity.this, "badge2");
+        gotBadge3 = readTrainerSetting(MainActivity.this, "badge3");
+        gotBadge4 = readTrainerSetting(MainActivity.this, "badge4");
+        gotBadge5 = readTrainerSetting(MainActivity.this, "badge5");
+        gotBadge6 = readTrainerSetting(MainActivity.this, "badge6");
+        gotBadge7 = readTrainerSetting(MainActivity.this, "badge7");
+        gotBadge8 = readTrainerSetting(MainActivity.this, "badge8");
+        //set on clicker for pokeball button
+        ImageButton pokeball = findViewById(R.id.pokeball);
+        pokeball.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //pop up dialog
+                dialogTrainer.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialogTrainer.getWindow().setLayout(504, 302);
+                //set visibility of nordle or badges
+                if (gotNordle) {
+                    nordle.setVisibility(View.VISIBLE);
+                }
+                if (gotBadge1) {
+                    badge1.setVisibility(View.VISIBLE);
+                }
+                if (gotBadge2) {
+                    badge2.setVisibility(View.VISIBLE);
+                }
+                if (gotBadge3) {
+                    badge3.setVisibility(View.VISIBLE);
+                }
+                if (gotBadge4) {
+                    badge4.setVisibility(View.VISIBLE);
+                }
+                if (gotBadge5) {
+                    badge5.setVisibility(View.VISIBLE);
+                }
+                if (gotBadge6) {
+                    badge6.setVisibility(View.VISIBLE);
+                }
+                if (gotBadge7) {
+                    badge7.setVisibility(View.VISIBLE);
+                }
+                if (gotBadge8) {
+                    badge8.setVisibility(View.VISIBLE);
+                }
+                dialogTrainer.show();
+            }
+        });
+    }
+
+    public boolean readTrainerSetting(Context context, String fileName) {
+        boolean gotItem = true;
+        try {
+            InputStream inputStream = context.openFileInput(fileName);
+            if (inputStream != null) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receivedString;
+
+                while ((receivedString = bufferedReader.readLine()) != null) {
+                    if (receivedString.equals("yes")) {
+                        gotItem = true;
+                    } else if (receivedString.equals("no")) {
+                        gotItem = false;
+                    }
+                }
+                inputStream.close();
+            }
+        } catch (FileNotFoundException e) {
+        } catch (IOException e){
+        }
+        return gotItem;
     }
 
     @Override
@@ -247,9 +368,5 @@ public class MainActivity extends AppCompatActivity {
             outputStreamWriter.close();
         } catch (IOException e) {
         }
-    }
-
-    public void showPokemonDialog() {
-
     }
 }
