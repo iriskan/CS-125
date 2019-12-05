@@ -1,6 +1,8 @@
 package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.Constraints;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -12,9 +14,11 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -167,23 +171,23 @@ public class MainActivity extends AppCompatActivity {
 
         //trainer card
         //set up trainer card dialog
-        builderTrainer = new AlertDialog.Builder(MainActivity.this);
-        LayoutInflater inflaterTrainer = MainActivity.this.getLayoutInflater();
-        View viewTrainer = inflaterTrainer.inflate(R.layout.trainer_card_dialog, null);
-        builderTrainer.setView(viewTrainer);
+        builder = new AlertDialog.Builder(MainActivity.this);
+        View viewTrainer = inflater.inflate(R.layout.trainer_card_dialog, null);
+        builder.setView(viewTrainer);
 
-        dialogTrainer = builderTrainer.create();
+        dialogTrainer = builder.create();
 
         //image views of nordle and badges
-        nordle = dialog.findViewById(R.id.nordle);
-        badge1 = dialog.findViewById(R.id.badge1);
-        badge2 = dialog.findViewById(R.id.badge2);
-        badge3 = dialog.findViewById(R.id.badge3);
-        badge4 = dialog.findViewById(R.id.badge4);
-        badge5 = dialog.findViewById(R.id.badge5);
-        badge6 = dialog.findViewById(R.id.badge6);
-        badge7 = dialog.findViewById(R.id.badge7);
-        badge8 = dialog.findViewById(R.id.badge8);
+        nordle = viewTrainer.findViewById(R.id.nordle);
+        Log.e("nordle null?", "null: " + nordle);
+        badge1 = viewTrainer.findViewById(R.id.badge1);
+        badge2 = viewTrainer.findViewById(R.id.badge2);
+        badge3 = viewTrainer.findViewById(R.id.badge3);
+        badge4 = viewTrainer.findViewById(R.id.badge4);
+        badge5 = viewTrainer.findViewById(R.id.badge5);
+        badge6 = viewTrainer.findViewById(R.id.badge6);
+        badge7 = viewTrainer.findViewById(R.id.badge7);
+        badge8 = viewTrainer.findViewById(R.id.badge8);
         //booleans if trainer has badges or nordle
         gotNordle = readTrainerSetting(MainActivity.this, "nordle");
         gotBadge1 = readTrainerSetting(MainActivity.this, "badge1");
@@ -200,9 +204,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //pop up dialog
-                dialogTrainer.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialogTrainer.getWindow().setLayout(504, 302);
+                Window trainerWindow = dialogTrainer.getWindow();
+                trainerWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                trainerWindow.setGravity(Gravity.CENTER);
+                trainerWindow.setGravity(Gravity.CENTER_HORIZONTAL);
+                trainerWindow.setGravity(Gravity.CENTER_VERTICAL);
                 //set visibility of nordle or badges
+                Log.e("gotNordle", "true?: " + gotNordle);
                 if (gotNordle) {
                     nordle.setVisibility(View.VISIBLE);
                 }
@@ -236,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean readTrainerSetting(Context context, String fileName) {
-        boolean gotItem = true;
+        boolean gotItem = false;
         try {
             InputStream inputStream = context.openFileInput(fileName);
             if (inputStream != null) {
