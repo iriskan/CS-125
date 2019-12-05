@@ -41,6 +41,16 @@ public class MapView extends View {
     private Drawable challenEast1;
     private Drawable challenEast2;
 
+    private Drawable nordleNorth0;
+    private Drawable nordleNorth1;
+    private Drawable nordleNorth2;
+    private Drawable nordleWest0;
+    private Drawable nordleWest1;
+    private Drawable nordleWest2;
+    private Drawable nordleEast0;
+    private Drawable nordleEast1;
+    private Drawable nordleEast2;
+
     private Drawable image;
     private Rect[] original;
     private Rect[] gyms;
@@ -143,6 +153,19 @@ public class MapView extends View {
         challenEast0 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.challen_east_0, null);
         challenEast1 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.challen_east_1, null);
         challenEast2 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.challen_east_2, null);
+
+        //nordle walking north
+        nordleNorth0 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.nord_north_0, null);
+        nordleNorth1 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.nord_north_1, null);
+        nordleNorth2 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.nord_north_2, null);
+        //nordle walking west
+        nordleWest0 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.nord_west_0, null);
+        nordleWest1 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.nord_west_1, null);
+        nordleWest2 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.nord_west_2, null);
+        //nordle walking east
+        nordleEast0 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.nord_east_0, null);
+        nordleEast1 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.nord_east_1, null);
+        nordleEast2 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.nord_east_2, null);
     }
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
