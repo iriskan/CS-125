@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -209,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
                 trainerWindow.setGravity(Gravity.CENTER);
                 trainerWindow.setGravity(Gravity.CENTER_HORIZONTAL);
                 trainerWindow.setGravity(Gravity.CENTER_VERTICAL);
+
                 //set visibility of nordle or badges
                 Log.e("gotNordle", "true?: " + gotNordle);
                 if (gotNordle) {
