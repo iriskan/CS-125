@@ -210,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
         gotBadge8 = readTrainerSetting(MainActivity.this, "badge8");
 
         //text view and edit text for trainer's name
+        yourName = readNameSetting(MainActivity.this, "name");
         name = viewTrainer.findViewById(R.id.name);
         if (yourName != null) {
             name.setText(yourName);
@@ -226,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
                 editName.clearComposingText();
                 name.setText(editName.getText());
                 yourName = name.getText().toString();
+                nameSetting(MainActivity.this, "name", yourName);
             }
         });
         name.setOnClickListener(new View.OnClickListener() {
@@ -306,6 +308,35 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e){
         }
         return gotItem;
+    }
+
+    public String readNameSetting(Context context, String fileName) {
+        String n = null;
+        try {
+            InputStream inputStream = context.openFileInput(fileName);
+            if (inputStream != null) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receivedString;
+
+                while ((receivedString = bufferedReader.readLine()) != null) {
+                    n = receivedString;
+                }
+                inputStream.close();
+            }
+        } catch (FileNotFoundException e) {
+        } catch (IOException e){
+        }
+        return n;
+    }
+
+    public void nameSetting(Context context, String fileName, String aName) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(fileName, Context.MODE_PRIVATE));
+            outputStreamWriter.write(aName);
+            outputStreamWriter.close();
+        } catch (IOException e) {
+        }
     }
 
     @Override
