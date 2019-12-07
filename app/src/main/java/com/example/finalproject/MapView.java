@@ -260,49 +260,69 @@ public class MapView extends View {
         if (standing == 0) {
             brendanNorth1.draw(c);
             challenNorth1.draw(c);
-            nordleNorth1.draw(c);
+            if (MainActivity.gotNordle) {
+                nordleNorth1.draw(c);
+            }
             standing++;
         } else if (vertical) {
             if (gait == 0) {
                 brendanNorth0.draw(c);
                 challenNorth0.draw(c);
-                nordleNorth0.draw(c);
+                if (MainActivity.gotNordle) {
+                    nordleNorth0.draw(c);
+                }
             } else if (gait == 1) {
                 brendanNorth1.draw(c);
                 challenNorth1.draw(c);
-                nordleNorth1.draw(c);
+                if (MainActivity.gotNordle) {
+                    nordleNorth1.draw(c);
+                }
             } else {
                 brendanNorth2.draw(c);
                 challenNorth2.draw(c);
-                nordleNorth2.draw(c);
+                if (MainActivity.gotNordle) {
+                    nordleNorth2.draw(c);
+                }
             }
         } else if (west) {
             if (gait == 0) {
                 brendanWest0.draw(c);
                 challenWest0.draw(c);
-                nordleWest0.draw(c);
+                if (MainActivity.gotNordle) {
+                    nordleWest0.draw(c);
+                }
             } else if (gait == 1) {
                 brendanWest1.draw(c);
                 challenWest1.draw(c);
-                nordleWest1.draw(c);
+                if (MainActivity.gotNordle) {
+                    nordleWest1.draw(c);
+                }
             } else {
                 brendanWest2.draw(c);
                 challenWest2.draw(c);
-                nordleWest2.draw(c);
+                if (MainActivity.gotNordle) {
+                    nordleWest2.draw(c);
+                }
             }
         } else {
             if (gait == 0) {
                 brendanEast0.draw(c);
                 challenEast0.draw(c);
-                nordleEast0.draw(c);
+                if (MainActivity.gotNordle) {
+                    nordleEast0.draw(c);
+                }
             } else if (gait == 1) {
                 brendanEast1.draw(c);
                 challenEast1.draw(c);
-                nordleEast1.draw(c);
+                if (MainActivity.gotNordle) {
+                    nordleEast1.draw(c);
+                }
             } else {
                 brendanEast2.draw(c);
                 challenEast2.draw(c);
-                nordleEast2.draw(c);
+                if (MainActivity.gotNordle) {
+                    nordleEast2.draw(c);
+                }
             }
         }
     }
