@@ -7,12 +7,14 @@ import androidx.constraintlayout.widget.Constraints;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,10 +22,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -49,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
     private AlertDialog.Builder builder;
     private Dialog dialog;
 
-    private AlertDialog.Builder builderTrainer;
     private Dialog dialogTrainer;
     public static boolean gotNordle;
     public static boolean gotBadge1;
@@ -69,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
     private ImageView badge6;
     private ImageView badge7;
     private ImageView badge8;
+
+    private TextView name;
+    private EditText editName;
+    private AlertDialog nameDialog;
+    private static String yourName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         //trainer card
         //set up trainer card dialog
         builder = new AlertDialog.Builder(MainActivity.this);
-        View viewTrainer = inflater.inflate(R.layout.trainer_card_dialog, null);
+        final View viewTrainer = inflater.inflate(R.layout.trainer_card_dialog, null);
         builder.setView(viewTrainer);
 
         dialogTrainer = builder.create();
@@ -199,6 +208,35 @@ public class MainActivity extends AppCompatActivity {
         gotBadge6 = readTrainerSetting(MainActivity.this, "badge6");
         gotBadge7 = readTrainerSetting(MainActivity.this, "badge7");
         gotBadge8 = readTrainerSetting(MainActivity.this, "badge8");
+
+        //text view and edit text for trainer's name
+        name = viewTrainer.findViewById(R.id.name);
+        if (yourName != null) {
+            name.setText(yourName);
+        }
+        nameDialog = new AlertDialog.Builder(this).create();
+        editName = new EditText(this);
+        nameDialog.setView(editName);
+        nameDialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(editName.getWindowToken(), 0);
+                editName.clearComposingText();
+                name.setText(editName.getText());
+                yourName = name.getText().toString();
+            }
+        });
+        name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editName.setText(name.getText());
+                nameDialog.show();
+            }
+        });
+
+
         //set on clicker for pokeball button
         ImageButton pokeball = findViewById(R.id.pokeball);
         pokeball.setOnClickListener(new View.OnClickListener() {
@@ -244,6 +282,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
     public boolean readTrainerSetting(Context context, String fileName) {
         boolean gotItem = false;

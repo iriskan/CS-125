@@ -155,4 +155,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/badge8" />
 
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="186dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="211dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="9dp"
+        android:fontFamily="monospace"
+        android:hint="Enter Your Name Here"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/nordle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingtitle" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
