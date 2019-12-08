@@ -19,14 +19,17 @@
         android:text="run"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.836"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/challenmander"
         android:layout_width="475dp"
         android:layout_height="383dp"
-        android:layout_marginTop="284dp"
+        android:layout_marginTop="448dp"
+        android:layout_marginEnd="44dp"
         app:layout_constraintEnd_toStartOf="@+id/run"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/challenmanderback" />
@@ -41,8 +44,8 @@
         android:text="FIGHT"
         app:layout_constraintBottom_toTopOf="@+id/run"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.752"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.852" />
 </androidx.constraintlayout.widget.ConstraintLayout>
