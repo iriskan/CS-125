@@ -2,6 +2,7 @@ package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
@@ -83,7 +85,18 @@ public class BattleActivity extends AppCompatActivity {
                 if (fxSoundOn) {
                     runSound.start();
                 }
-                LinearLayout card = findViewById(R.id.trainerdialog);
+                /*
+                if (MapView.getGym() == 7.0) {
+                    Activity temp = new MainActivity();
+                    try {
+                        OutputStreamWriter outputStreamWriter = new
+                                OutputStreamWriter(temp.getBaseContext().openFileOutput("badge7", Context.MODE_PRIVATE));
+                        outputStreamWriter.write("yes");
+                        outputStreamWriter.close();
+                    } catch (IOException e) {
+                    }
+                }
+                */
                 finish();//go back to the previous Activity
                 overridePendingTransition(R.anim.fade_battle_in, R.anim.fade_battle_out);
             }
