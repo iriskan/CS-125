@@ -45,11 +45,18 @@ public class BattleActivity extends AppCompatActivity {
         TextView text1 = findViewById(R.id.challenmanderDo);
         text1.setText("WHAT WILL " + MainActivity.getYourName().toUpperCase() + " DO?");
 
-        System.out.println(MapView.getGym());
+        double gym = MapView.getGym();
+        text1.setText("HI " + gym);
+        ImageView aabass = findViewById(R.id.aabass);
+        ImageView vinithyama = findViewById(R.id.vinithyama);
 
-        if (MapView.getGym() == 0.0) {
-            ImageView aabass = findViewById(R.id.aabass);
+        if (gym == 0.0) {
+            vinithyama.setVisibility(View.INVISIBLE);
             aabass.setVisibility(View.VISIBLE);
+        }
+        if (gym == 1.0) {
+            aabass.setVisibility(View.INVISIBLE);
+            vinithyama.setVisibility(View.VISIBLE);
         }
 
         // run button goes back to prev activity w/ fade in/out transition
