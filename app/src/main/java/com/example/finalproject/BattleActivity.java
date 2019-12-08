@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -44,6 +45,13 @@ public class BattleActivity extends AppCompatActivity {
         TextView text1 = findViewById(R.id.challenmanderDo);
         text1.setText("WHAT WILL " + MainActivity.getYourName().toUpperCase() + " DO?");
 
+        System.out.println(MapView.getGym());
+
+        if (MapView.getGym() == 0.0) {
+            ImageView aabass = findViewById(R.id.aabass);
+            aabass.setVisibility(View.VISIBLE);
+        }
+
         // run button goes back to prev activity w/ fade in/out transition
         Button runButton = findViewById(R.id.run);
         runButton.setOnClickListener(new View.OnClickListener(){
@@ -69,9 +77,6 @@ public class BattleActivity extends AppCompatActivity {
                     runSound.start();
                 }
                 LinearLayout card = findViewById(R.id.trainerdialog);
-                if (MapView.getGym() == 0.0) {
-
-                }
                 finish();//go back to the previous Activity
                 overridePendingTransition(R.anim.fade_battle_in, R.anim.fade_battle_out);
             }
