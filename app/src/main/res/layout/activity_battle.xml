@@ -13,25 +13,46 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="294dp"
         android:layout_marginTop="638dp"
-        android:layout_marginEnd="29dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="32dp"
         android:fontFamily="monospace"
-        android:text="run"
+        android:text="RUN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.836"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="206dp"
+        android:layout_height="134dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="68dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/challenmander"
+        app:layout_constraintVertical_bias="0.02"
+        tools:text="WHAT WILL CHALLENMANDER DO?" />
 
     <ImageView
         android:id="@+id/challenmander"
         android:layout_width="475dp"
         android:layout_height="383dp"
-        android:layout_marginTop="448dp"
-        android:layout_marginEnd="44dp"
+        android:layout_marginTop="225dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/fight"
         app:layout_constraintEnd_toStartOf="@+id/run"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/challenmanderback" />
 
     <Button
@@ -39,13 +60,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="576dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="14dp"
         android:text="FIGHT"
         app:layout_constraintBottom_toTopOf="@+id/run"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.752"
+        app:layout_constraintHorizontal_bias="0.698"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.852" />
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
