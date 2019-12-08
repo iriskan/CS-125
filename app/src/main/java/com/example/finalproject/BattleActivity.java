@@ -68,7 +68,10 @@ public class BattleActivity extends AppCompatActivity {
                 if (fxSoundOn) {
                     runSound.start();
                 }
-                //LinearLayout card = findViewById(R.id.trainerdialog);
+                LinearLayout card = findViewById(R.id.trainerdialog);
+                if (MapView.getGym() == 0.0) {
+
+                }
                 finish();//go back to the previous Activity
                 overridePendingTransition(R.anim.fade_battle_in, R.anim.fade_battle_out);
             }

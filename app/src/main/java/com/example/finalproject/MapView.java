@@ -56,6 +56,7 @@ public class MapView extends View {
     private Rect[] gyms;
     private int[][] originalPaths;
     private double[][] gymPaths;
+    private static double gym;
     private double scaler;
     private boolean vertical;
     private boolean west;
@@ -200,6 +201,7 @@ public class MapView extends View {
             for (int j = 0; j < originalPaths[0].length - 1; j++) {
                 gymPaths[i][j] = factor * originalPaths[i][j] * scaler;
             }
+            gym = gymPaths[i][3];
         }
     }
     @Override
@@ -366,5 +368,9 @@ public class MapView extends View {
         currentX = x0;
         currentY = y0;
         standing = 0;
+    }
+
+    public static double getGym() {
+        return gym;
     }
 }

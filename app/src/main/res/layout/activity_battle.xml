@@ -7,6 +7,36 @@
     android:background="@drawable/battle_bg"
     tools:context=".BattleActivity">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="74dp"
+        android:layout_height="8dp"
+        android:layout_marginStart="320dp"
+        android:layout_marginTop="405dp"
+        android:max="100"
+        android:progress="100"
+        android:progressTint="#4FDF27"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="74dp"
+        android:layout_height="8dp"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="144dp"
+        android:max="100"
+        android:progress="100"
+        android:progressTint="#4FDF27"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
     <EditText
         android:id="@+id/challenmanderDo"
         android:layout_width="168dp"
