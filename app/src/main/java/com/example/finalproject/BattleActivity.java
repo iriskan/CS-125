@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -52,6 +53,22 @@ public class BattleActivity extends AppCompatActivity {
                 if (fxSoundOn) {
                     runSound.start();
                 }
+                finish();//go back to the previous Activity
+                overridePendingTransition(R.anim.fade_battle_in, R.anim.fade_battle_out);
+            }
+        });
+
+        // for now, the fight button also goes back to the previous activity with transition fade and music
+        // i'm hoping to put whatever gym number it is' badge into your trainer card when you fight
+        // so fight would be an immediate win. Also maybe to set green health bars?
+        Button fightButton = findViewById(R.id.fight);
+        fightButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(final View v) {
+                if (fxSoundOn) {
+                    runSound.start();
+                }
+                //LinearLayout card = findViewById(R.id.trainerdialog);
                 finish();//go back to the previous Activity
                 overridePendingTransition(R.anim.fade_battle_in, R.anim.fade_battle_out);
             }
