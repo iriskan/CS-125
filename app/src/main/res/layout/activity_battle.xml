@@ -15,6 +15,7 @@
         android:layout_marginTop="520dp"
         android:layout_marginBottom="40dp"
         android:ems="10"
+        android:fontFamily="monospace"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
