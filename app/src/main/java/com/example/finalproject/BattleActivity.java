@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -37,6 +38,10 @@ public class BattleActivity extends AppCompatActivity {
         //get volume settings
         bgSoundOn = StartActivity.bgSoundOn;
         fxSoundOn = StartActivity.fxSoundOn;
+
+        //TextView stuff?
+        TextView text1 = findViewById(R.id.challenmanderDo);
+        text1.setText("WHAT WILL " + MainActivity.getYourName().toUpperCase() + " DO?");
 
         // run button goes back to prev activity w/ fade in/out transition
         Button runButton = findViewById(R.id.run);
@@ -73,6 +78,7 @@ public class BattleActivity extends AppCompatActivity {
             try {
                 battleMusic.prepare();
             } catch(Exception e) {
+                System.out.println("You done messed up!");
             }
         }
     }
@@ -99,6 +105,7 @@ public class BattleActivity extends AppCompatActivity {
             outputStreamWriter.write(gotItem);
             outputStreamWriter.close();
         } catch (IOException e) {
+            System.out.println("You done bad");
         }
     }
 }

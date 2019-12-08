@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         mapMusic.prepare();
                     } catch (Exception e) {
+                        System.out.println("Oh no!!");
                     }
                     StartActivity.bgSoundOn = false;
                     bgSoundOn = false;
@@ -160,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         gymButtonSound.prepare();
                     } catch (Exception e) {
+                        System.out.println("What!? An error!");
                     }
                     gymButtonSound.seekTo(0);
                     StartActivity.fxSoundOn = false;
@@ -337,6 +339,13 @@ public class MainActivity extends AppCompatActivity {
             outputStreamWriter.close();
         } catch (IOException e) {
         }
+    }
+
+    public static String getYourName() {
+        if (yourName == null) {
+            return "you";
+        }
+        return yourName;
     }
 
     @Override
