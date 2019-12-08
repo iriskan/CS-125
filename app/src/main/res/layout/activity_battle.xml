@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@drawable/battle_bg"
     tools:context=".BattleActivity">
 
@@ -34,11 +34,13 @@
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/challenmander"
         app:layout_constraintVertical_bias="0.02"
-        tools:text="WHAT WILL CHALLENMANDER DO?" />
+        tools:text="WHAT WILL CHALLENMANDER DO?"
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/challenmander"
