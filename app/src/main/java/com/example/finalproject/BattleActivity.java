@@ -2,17 +2,15 @@ package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
@@ -44,7 +42,7 @@ public class BattleActivity extends AppCompatActivity {
         fxSoundOn = StartActivity.fxSoundOn;
 
         //TextView stuff?
-        TextView text1 = findViewById(R.id.challenmanderDo);
+        TextView text1 = findViewById(R.id.battleText);
         text1.setText("WHAT WILL " + MainActivity.getYourName().toUpperCase() + " DO?");
 
         double gym = MapView.getGym();
@@ -99,6 +97,25 @@ public class BattleActivity extends AppCompatActivity {
                 */
                 finish();//go back to the previous Activity
                 overridePendingTransition(R.anim.fade_battle_in, R.anim.fade_battle_out);
+            }
+        });
+
+        Button bagButton = findViewById(R.id.bag);
+        bagButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(final View v) {
+                final TextView reText = findViewById(R.id.battleText);
+                reText.setText("THERE'S NO USE FOR THAT RIGHT NOW!");
+                CountDownTimer timer = new CountDownTimer(3500, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        reText.setText("WHAT WILL " + MainActivity.getYourName().toUpperCase() + " DO?");
+                    }
+                }.start();
             }
         });
     }
