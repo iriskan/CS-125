@@ -92,6 +92,7 @@ public class BattleActivity extends AppCompatActivity {
         //initialize your pokemon progress bar
         yourHealth.setProgress(100);
 
+        //initialize specific gym setting, enemy pokemon
         gym = getIntent().getDoubleExtra("gymNum", -1);
         ImageView aabass = findViewById(R.id.aabass);
         ImageView vinithyama = findViewById(R.id.vinithyama);
