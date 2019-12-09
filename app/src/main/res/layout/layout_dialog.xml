@@ -3,11 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dialog"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
     android:background="@drawable/dialog_round"
     android:backgroundTint="#8DFFFFFF"
-    android:backgroundTintMode="src_over">
+    android:backgroundTintMode="src_over"
+    android:maxHeight="400dp">
 
     <TextView
         android:id="@+id/settingtitle"
@@ -49,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="45dp"
         android:layout_marginEnd="160dp"
         android:layout_marginBottom="377dp"
         android:backgroundTint="@color/colorPrimaryDark"
@@ -58,7 +60,9 @@
         android:textColor="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/soundeffects" />
+        app:layout_constraintTop_toBottomOf="@+id/soundeffects"
+        app:layout_constraintVertical_bias="0.064" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,14 +50,37 @@ public class BattleActivity extends AppCompatActivity {
         text1.setText("HI " + gym);
         ImageView aabass = findViewById(R.id.aabass);
         ImageView vinithyama = findViewById(R.id.vinithyama);
+        ImageView jishking = findViewById(R.id.jishking);
+        ImageView nercoal = findViewById(R.id.nercoal);
+        ImageView healotic = findViewById(R.id.healotic);
+        ImageView mingnectric = findViewById(R.id.mingnectric);
+        ImageView silasria = findViewById(R.id.silasria);
+        ImageView mohammaunt = findViewById(R.id.mohammaunt);
+        vinithyama.setVisibility(View.INVISIBLE);
+        aabass.setVisibility(View.INVISIBLE);
+        jishking.setVisibility(View.INVISIBLE);
+        nercoal.setVisibility(View.INVISIBLE);
+        healotic.setVisibility(View.INVISIBLE);
+        mingnectric.setVisibility(View.INVISIBLE);
+        silasria.setVisibility(View.INVISIBLE);
+        mohammaunt.setVisibility(View.INVISIBLE);
 
         if (gym == 0.0) {
-            vinithyama.setVisibility(View.INVISIBLE);
             aabass.setVisibility(View.VISIBLE);
-        }
-        if (gym == 1.0) {
-            aabass.setVisibility(View.INVISIBLE);
+        } else if (gym == 1.0) {
+            jishking.setVisibility(View.VISIBLE);
+        } else if (gym == 2.0) {
+            nercoal.setVisibility(View.VISIBLE);
+        } else if (gym == 3.0) {
+            healotic.setVisibility(View.VISIBLE);
+        } else if (gym == 4.0) {
             vinithyama.setVisibility(View.VISIBLE);
+        } else if (gym == 5.0) {
+            silasria.setVisibility(View.VISIBLE);
+        } else if (gym == 6.0) {
+            mingnectric.setVisibility(View.VISIBLE);
+        } else if (gym == 7.0) {
+            mohammaunt.setVisibility(View.VISIBLE);
         }
 
         // run button goes back to prev activity w/ fade in/out transition
