@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText editName;
     private AlertDialog nameDialog;
     private static String yourName;
+    private static String activePokemon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         soundFx = view.findViewById(R.id.soundeffects);
 
         dialog = builder.create();
-
+        activePokemon = "CHALLENMANDER";
 
         //settings button
         ImageButton settings = findViewById(R.id.settings);
@@ -270,7 +271,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         //set on clicker for pokeball button
         ImageButton pokeball = findViewById(R.id.pokeball);
         pokeball.setOnClickListener(new View.OnClickListener() {
@@ -317,6 +317,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public static void setActivePokemon(String newPokemon) {
+        activePokemon = newPokemon;
+    }
+
+    public static String getActivePokemon() {
+        return activePokemon;
+    }
 
     public boolean readTrainerSetting(Context context, String fileName) {
         boolean gotItem = false;

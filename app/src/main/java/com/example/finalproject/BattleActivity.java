@@ -50,6 +50,17 @@ public class BattleActivity extends AppCompatActivity {
         bgSoundOn = StartActivity.bgSoundOn;
         fxSoundOn = StartActivity.fxSoundOn;
 
+        //change the Pokemon
+        ImageView nordle = findViewById(R.id.nordle);
+        ImageView challenmander = findViewById(R.id.challenmander);
+        if (MainActivity.getActivePokemon().equals("NORDLE")) {
+            nordle.setVisibility(View.VISIBLE);
+            challenmander.setVisibility(View.GONE);
+        } else {
+            challenmander.setVisibility(View.VISIBLE);
+            nordle.setVisibility(View.GONE);
+        }
+
         //TextView stuff?
         TextView text1 = findViewById(R.id.battleText);
         text1.setText("WHAT WILL " + MainActivity.getYourName().toUpperCase() + " DO?");
@@ -100,6 +111,7 @@ public class BattleActivity extends AppCompatActivity {
 
             @Override
             public void onClick(final View v) {
+                findViewById(R.id.no).performClick();
                 if (fxSoundOn) {
                     runSound.start();
                 }
@@ -108,13 +120,13 @@ public class BattleActivity extends AppCompatActivity {
             }
         });
 
-        // for now, the fight button also goes back to the previous activity with transition fade and music
-        // i'm hoping to put whatever gym number it is' badge into your trainer card when you fight
-        // so fight would be an immediate win. Also maybe to set green health bars?
+        // The Fight button takes away some of the opponent's health. If the health becomes <=0,
+        // The battle is won. It gives you the gym's badge if you haven't already gotten it.
         Button fightButton = findViewById(R.id.fight);
         fightButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(final View v) {
+                findViewById(R.id.no).performClick();
                 int oppHealth = opponentHealth.getProgress();
                 int minus = oppHealth - 33;
                 while (oppHealth >= minus) {
@@ -134,7 +146,7 @@ public class BattleActivity extends AppCompatActivity {
                 }
 
                 final TextView reText = findViewById(R.id.battleText);
-                reText.setText("YOUR POKEMON ATTACKS...");
+                reText.setText(MainActivity.getActivePokemon() + " ATTACKS...");
 
                 final int oh = oppHealth;
                 new CountDownTimer(1500, 1000) {
@@ -204,6 +216,7 @@ public class BattleActivity extends AppCompatActivity {
         bagButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(final View v) {
+                findViewById(R.id.no).performClick();
                 final TextView reText = findViewById(R.id.battleText);
                 reText.setText("THERE'S NO USE FOR THAT RIGHT NOW...");
                 CountDownTimer timer = new CountDownTimer(3000, 1000) {
@@ -216,6 +229,51 @@ public class BattleActivity extends AppCompatActivity {
                         reText.setText("WHAT WILL " + MainActivity.getYourName().toUpperCase() + " DO?");
                     }
                 }.start();
+            }
+        });
+
+        Button pokemon = findViewById(R.id.pokemon);
+        pokemon.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(final View v) {
+                final TextView reText = findViewById(R.id.battleText);
+                if (MainActivity.gotNordle == true) {
+                    if (MainActivity.getActivePokemon().equals("NORDLE")) {
+                        reText.setText("USE CHALLEN MANDER?");
+                    } else {
+                        reText.setText("USE NORDLE?");
+                    }
+                    Button no = findViewById(R.id.no);
+                    no.setVisibility(View.VISIBLE);
+                    no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(final View V) {
+                            findViewById(R.id.yes).setVisibility(View.GONE);
+                            findViewById(R.id.no).setVisibility(View.GONE);
+                            reText.setText("WHAT WILL " + MainActivity.getYourName().toUpperCase() + " DO?");
+                        }
+                    });
+                    Button yes = findViewById(R.id.yes);
+                    yes.setVisibility(View.VISIBLE);
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(final View V) {
+                            if (MainActivity.getActivePokemon().equals("NORDLE")) {
+                                MainActivity.setActivePokemon("CHALLENDMANDER");
+                                findViewById(R.id.challenmander).setVisibility(View.VISIBLE);
+                                findViewById(R.id.nordle).setVisibility(View.GONE);
+                            } else {
+                                MainActivity.setActivePokemon("NORDLE");
+                                findViewById(R.id.nordle).setVisibility(View.VISIBLE);
+                                findViewById(R.id.challenmander).setVisibility(View.GONE);
+                            }
+                            findViewById(R.id.no).performClick();
+                        }
+                    });
+
+                } else {
+                    reText.setText("YOU HAVE NO OTHER POKEMON.");
+                }
             }
         });
     }
