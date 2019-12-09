@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -80,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
     private AlertDialog nameDialog;
     private static String yourName;
     private static String activePokemon;
+    private Drawable brendan;
+    private Drawable may;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -282,6 +285,14 @@ public class MainActivity extends AppCompatActivity {
                 trainerWindow.setGravity(Gravity.CENTER);
                 trainerWindow.setGravity(Gravity.CENTER_HORIZONTAL);
                 trainerWindow.setGravity(Gravity.CENTER_VERTICAL);
+
+                Button changeTrainer = findViewById(R.id.trainer);
+                changeTrainer.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(final View v) {
+                        trainerWindow.setBackgroundDrawable();
+                    }
+                });
 
                 //set visibility of nordle or badges
                 Log.e("gotNordle", "true?: " + gotNordle);

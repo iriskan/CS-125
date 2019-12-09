@@ -3,9 +3,6 @@ package com.example.finalproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -70,6 +67,7 @@ public class BattleActivity extends AppCompatActivity {
         opponentHealth.setProgress(100);
 
         gym = getIntent().getDoubleExtra("gymNum", -1);
+
         ImageView aabass = findViewById(R.id.aabass);
         ImageView vinithyama = findViewById(R.id.vinithyama);
         ImageView jishking = findViewById(R.id.jishking);
