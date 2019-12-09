@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -169,6 +170,35 @@ public class MainActivity extends AppCompatActivity {
                     BattleActivity.fxSoundOn = false;
                     soundSetting(MainActivity.this, "fxSound", "off");
                 }
+            }
+        });
+
+        Button restartButton = view.findViewById(R.id.restart);
+        restartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setIcon(R.drawable.pikachuu)
+                        .setTitle("Restart Game?")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                trainerSetting(MainActivity.this, "nordle", "no");
+                                trainerSetting(MainActivity.this, "badge1", "no");
+                                trainerSetting(MainActivity.this, "badge2", "no");
+                                trainerSetting(MainActivity.this, "badge3", "no");
+                                trainerSetting(MainActivity.this, "badge4", "no");
+                                trainerSetting(MainActivity.this, "badge5", "no");
+                                trainerSetting(MainActivity.this, "badge6", "no");
+                                trainerSetting(MainActivity.this, "badge7", "no");
+                                trainerSetting(MainActivity.this, "badge8", "no");
+                                finish();
+                            }
+
+                        })
+                        .setNegativeButton("CANCEL", null)
+                        .show();
             }
         });
 
@@ -457,6 +487,23 @@ public class MainActivity extends AppCompatActivity {
             outputStreamWriter.write(sound);
             outputStreamWriter.close();
         } catch (IOException e) {
+        }
+    }
+
+    /**
+     * write in nordle or badges file if trainer has badges or nordle
+     * Ex: trainerSetting(BattleActivity.this, "badge1", "yes");
+     * @param context which activity context (should be BattleActivity.this)
+     * @param fileName name of the file: "nordle" or "badge1" or "badge2" ... or "badge8"
+     * @param gotItem put "yes" or "no"
+     */
+    public void trainerSetting(Context context, String fileName, String gotItem) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(fileName, Context.MODE_PRIVATE));
+            outputStreamWriter.write(gotItem);
+            outputStreamWriter.close();
+        } catch (IOException e) {
+            System.out.println("You done bad");
         }
     }
 }
