@@ -17,6 +17,7 @@ import java.io.OutputStreamWriter;
 public class BattleActivity extends AppCompatActivity {
     private MediaPlayer battleMusic;
     private MediaPlayer runSound;
+    private MediaPlayer victoryMusic;
     public static boolean fxSoundOn;
     public static boolean bgSoundOn;
     private double gym;
@@ -38,6 +39,9 @@ public class BattleActivity extends AppCompatActivity {
         //create run sound when exit battle
         runSound = MediaPlayer.create(BattleActivity.this, R.raw.runbutton);
 
+        //create win sound when finishing a fight
+        victoryMusic = MediaPlayer.create(BattleActivity.this, R.raw.victorymusic);
+
         //get volume settings
         bgSoundOn = StartActivity.bgSoundOn;
         fxSoundOn = StartActivity.fxSoundOn;
@@ -47,7 +51,6 @@ public class BattleActivity extends AppCompatActivity {
         text1.setText("WHAT WILL " + MainActivity.getYourName().toUpperCase() + " DO?");
 
         gym = getIntent().getDoubleExtra("gymNum", -1);
-        text1.setText("HI " + gym);
         ImageView aabass = findViewById(R.id.aabass);
         ImageView vinithyama = findViewById(R.id.vinithyama);
         ImageView jishking = findViewById(R.id.jishking);
@@ -135,8 +138,33 @@ public class BattleActivity extends AppCompatActivity {
                     trainerSetting(BattleActivity.this, "nordle", "yes");
                     MainActivity.gotNordle = true;
                 }
-                finish();//go back to the previous Activity
-                overridePendingTransition(R.anim.fade_battle_in, R.anim.fade_battle_out);
+                if (fxSoundOn) {
+                    victoryMusic.start();
+                }
+                final TextView reText = findViewById(R.id.battleText);
+                reText.setText("YOUR POKEMON ATTACKS...");
+                CountDownTimer timer = new CountDownTimer(2000, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        battleMusic.pause();
+                        reText.setText("THE OTHER POKEMON FAINTED. YOU WON!");
+                    }
+                }.start();
+                CountDownTimer time = new CountDownTimer(4450, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        finish();//go back to the previous Activity
+                        overridePendingTransition(R.anim.fade_battle_in, R.anim.fade_battle_out);
+                    }
+                }.start();
             }
         });
 
@@ -145,8 +173,8 @@ public class BattleActivity extends AppCompatActivity {
             @Override
             public void onClick(final View v) {
                 final TextView reText = findViewById(R.id.battleText);
-                reText.setText("THERE'S NO USE FOR THAT RIGHT NOW!");
-                CountDownTimer timer = new CountDownTimer(3500, 1000) {
+                reText.setText("THERE'S NO USE FOR THAT RIGHT NOW...");
+                CountDownTimer timer = new CountDownTimer(3000, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
                     }
