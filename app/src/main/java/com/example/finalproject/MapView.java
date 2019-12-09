@@ -55,13 +55,14 @@ public class MapView extends View {
     private Rect[] original;
     private Rect[] gyms;
     private int[][] originalPaths;
-    private double[][] gymPaths;
+    public double[][] gymPaths;
     private static double gym;
     private double scaler;
     private boolean vertical;
     private boolean west;
     private int gait;
     private int standing;
+
     public MapView(Context context, AttributeSet attrs) {
         super(context, attrs);
         image = ResourcesCompat.getDrawable(context.getResources(), R.drawable.map, null);
@@ -350,6 +351,13 @@ public class MapView extends View {
         Log.e("GAITTTTT", "gait: " + gait);
         invalidate();
     }
+
+    /**
+     * returns a pathway array to the gym
+     * @param x
+     * @param y
+     * @return
+     */
     public double[] aGymPath (int x, int y) {
         for (int i = 0; i < gyms.length; i++) {
             Log.e("gym stuff", "coords: " + gyms[i].toString());

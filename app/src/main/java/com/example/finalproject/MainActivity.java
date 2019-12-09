@@ -341,19 +341,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public static void badgeSetting(Context context, String fileName, String maybe) {
-        try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(fileName, Context.MODE_PRIVATE));
-            outputStreamWriter.write(maybe);
-            outputStreamWriter.close();
-        } catch (IOException e) {
-        }
-    }
-
-    public void setGotBadge(String badge) {
-        badgeSetting(MainActivity.this, badge, "yes");
-    }
-
     public static String getYourName() {
         if (yourName == null) {
             return "you";
@@ -444,6 +431,7 @@ public class MainActivity extends AppCompatActivity {
                                 Intent battleIntent = new Intent(MainActivity.this, BattleActivity.class);
                                 mapView.restoreOriginal();
                                 timer = null;
+                                battleIntent.putExtra("gymNum", path[3]);
                                 startActivity(battleIntent);
                                 overridePendingTransition(R.anim.fade_battle_in, R.anim.fade_battle_out);
                             }

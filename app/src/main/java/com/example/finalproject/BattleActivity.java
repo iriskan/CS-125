@@ -19,6 +19,7 @@ public class BattleActivity extends AppCompatActivity {
     private MediaPlayer runSound;
     public static boolean fxSoundOn;
     public static boolean bgSoundOn;
+    private double gym;
     // I used this for my graphics: https://github.com/hydrozoa-yt/pokemon/tree/master/res
     // I included in the drawable folder all the pokemon for each gym
     // the last element in path array in main activity contains gym number
@@ -45,7 +46,7 @@ public class BattleActivity extends AppCompatActivity {
         TextView text1 = findViewById(R.id.battleText);
         text1.setText("WHAT WILL " + MainActivity.getYourName().toUpperCase() + " DO?");
 
-        double gym = MapView.getGym();
+        gym = getIntent().getDoubleExtra("gymNum", -1);
         text1.setText("HI " + gym);
         ImageView aabass = findViewById(R.id.aabass);
         ImageView vinithyama = findViewById(R.id.vinithyama);
@@ -80,21 +81,37 @@ public class BattleActivity extends AppCompatActivity {
         fightButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(final View v) {
-                if (fxSoundOn) {
-                    runSound.start();
+                if (gym == 0.0) {
+                    trainerSetting(BattleActivity.this, "badge1", "yes");
+                    MainActivity.gotBadge1 = true;
+                } else if (gym == 1.0) {
+                    trainerSetting(BattleActivity.this, "badge2", "yes");
+                    MainActivity.gotBadge2 = true;
+                } else if (gym == 2.0) {
+                    trainerSetting(BattleActivity.this, "badge3", "yes");
+                    MainActivity.gotBadge3 = true;
+                } else if (gym == 3.0) {
+                    trainerSetting(BattleActivity.this, "badge4", "yes");
+                    MainActivity.gotBadge4 = true;
+                } else if (gym == 4.0) {
+                    trainerSetting(BattleActivity.this, "badge5", "yes");
+                    MainActivity.gotBadge5 = true;
+                } else if (gym == 5.0) {
+                    trainerSetting(BattleActivity.this, "badge6", "yes");
+                    MainActivity.gotBadge6 = true;
+                } else if (gym == 6.0) {
+                    trainerSetting(BattleActivity.this, "badge7", "yes");
+                    MainActivity.gotBadge7 = true;
+                } else if (gym == 7.0) {
+                    trainerSetting(BattleActivity.this, "badge8", "yes");
+                    MainActivity.gotBadge8 = true;
                 }
-                /*
-                if (MapView.getGym() == 7.0) {
-                    Activity temp = new MainActivity();
-                    try {
-                        OutputStreamWriter outputStreamWriter = new
-                                OutputStreamWriter(temp.getBaseContext().openFileOutput("badge7", Context.MODE_PRIVATE));
-                        outputStreamWriter.write("yes");
-                        outputStreamWriter.close();
-                    } catch (IOException e) {
-                    }
+                if (MainActivity.gotBadge1 && MainActivity.gotBadge2 && MainActivity.gotBadge3
+                        && MainActivity.gotBadge4 && MainActivity.gotBadge5 && MainActivity.gotBadge6
+                        && MainActivity.gotBadge7 && MainActivity.gotBadge8) {
+                    trainerSetting(BattleActivity.this, "nordle", "yes");
+                    MainActivity.gotNordle = true;
                 }
-                */
                 finish();//go back to the previous Activity
                 overridePendingTransition(R.anim.fade_battle_in, R.anim.fade_battle_out);
             }
