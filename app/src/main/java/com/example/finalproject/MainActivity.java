@@ -3,7 +3,6 @@ package com.example.finalproject;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Constraints;
-import androidx.core.content.res.ResourcesCompat;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -12,7 +11,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -82,9 +80,6 @@ public class MainActivity extends AppCompatActivity {
     private AlertDialog nameDialog;
     private static String yourName;
     private static String activePokemon;
-    private static String trainer;
-    private Drawable brendan;
-    private Drawable may;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,9 +98,6 @@ public class MainActivity extends AppCompatActivity {
 
         dialog = builder.create();
         activePokemon = "CHALLENMANDER";
-
-        brendan = ResourcesCompat.getDrawable(MainActivity.this.getResources(), R.drawable.trainer_card, null);
-        may = ResourcesCompat.getDrawable(MainActivity.this.getResources(), R.drawable.trainer_card_may, null);
 
         //settings button
         ImageButton settings = findViewById(R.id.settings);
@@ -218,6 +210,8 @@ public class MainActivity extends AppCompatActivity {
         enterDoorSound = MediaPlayer.create(MainActivity.this, R.raw.enterdoor);
         gymButton();
 
+
+
         //trainer card
         //set up trainer card dialog
         builder = new AlertDialog.Builder(MainActivity.this);
@@ -277,6 +271,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         //set on clicker for pokeball button
         ImageButton pokeball = findViewById(R.id.pokeball);
         pokeball.setOnClickListener(new View.OnClickListener() {
@@ -288,20 +283,6 @@ public class MainActivity extends AppCompatActivity {
                 trainerWindow.setGravity(Gravity.CENTER);
                 trainerWindow.setGravity(Gravity.CENTER_HORIZONTAL);
                 trainerWindow.setGravity(Gravity.CENTER_VERTICAL);
-
-                Button changeTrainer = findViewById(R.id.trainer);
-                changeTrainer.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(final View v) {
-                        if (trainer.equals("brendan")) {
-                            findViewById(R.id.trainerdialog).setBackground(may);
-                            trainer = "may";
-                        } else {
-                            findViewById(R.id.trainerdialog).setBackground(brendan);
-                            trainer = "brendan";
-                        }
-                    }
-                });
 
                 //set visibility of nordle or badges
                 Log.e("gotNordle", "true?: " + gotNordle);
@@ -337,13 +318,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public static void setActivePokemon(String newPokemon) {
-        activePokemon = newPokemon;
-    }
-
-    public static String getActivePokemon() {
-        return activePokemon;
-    }
 
     public boolean readTrainerSetting(Context context, String fileName) {
         boolean gotItem = false;
@@ -432,6 +406,14 @@ public class MainActivity extends AppCompatActivity {
             mapMusic.start();
             mapMusic.setLooping(true);
         }
+    }
+
+    public static String getActivePokemon() {
+        return activePokemon;
+    }
+
+    public static void setActivePokemon(String newPokemon) {
+        activePokemon = newPokemon;
     }
 
     /**
