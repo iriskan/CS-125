@@ -3,6 +3,7 @@ package com.example.finalproject;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Constraints;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
     private AlertDialog nameDialog;
     private static String yourName;
     private static String activePokemon;
+    private static String trainer;
     private Drawable brendan;
     private Drawable may;
 
@@ -101,6 +103,9 @@ public class MainActivity extends AppCompatActivity {
 
         dialog = builder.create();
         activePokemon = "CHALLENMANDER";
+
+        brendan = ResourcesCompat.getDrawable(MainActivity.this.getResources(), R.drawable.trainer_card, null);
+        may = ResourcesCompat.getDrawable(MainActivity.this.getResources(), R.drawable.trainer_card_may, null);
 
         //settings button
         ImageButton settings = findViewById(R.id.settings);
@@ -213,8 +218,6 @@ public class MainActivity extends AppCompatActivity {
         enterDoorSound = MediaPlayer.create(MainActivity.this, R.raw.enterdoor);
         gymButton();
 
-
-
         //trainer card
         //set up trainer card dialog
         builder = new AlertDialog.Builder(MainActivity.this);
@@ -290,7 +293,13 @@ public class MainActivity extends AppCompatActivity {
                 changeTrainer.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(final View v) {
-                        trainerWindow.setBackgroundDrawable();
+                        if (trainer.equals("brendan")) {
+                            findViewById(R.id.trainerdialog).setBackground(may);
+                            trainer = "may";
+                        } else {
+                            findViewById(R.id.trainerdialog).setBackground(brendan);
+                            trainer = "brendan";
+                        }
                     }
                 });
 
