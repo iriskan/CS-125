@@ -104,7 +104,7 @@
         tools:visibility="gone" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/pokemonHealth"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="74dp"
         android:layout_height="8dp"
@@ -123,7 +123,7 @@
         tools:visibility="visible" />
 
     <ProgressBar
-        android:id="@+id/progressBar2"
+        android:id="@+id/opponentHealth"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="74dp"
         android:layout_height="8dp"

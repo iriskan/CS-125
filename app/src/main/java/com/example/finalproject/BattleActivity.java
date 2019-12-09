@@ -3,12 +3,16 @@ package com.example.finalproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -49,6 +53,10 @@ public class BattleActivity extends AppCompatActivity {
         //TextView stuff?
         TextView text1 = findViewById(R.id.battleText);
         text1.setText("WHAT WILL " + MainActivity.getYourName().toUpperCase() + " DO?");
+
+        //initialize progress bar
+        final ProgressBar opponentHealth = findViewById(R.id.opponentHealth);
+        opponentHealth.setProgress(100);
 
         gym = getIntent().getDoubleExtra("gymNum", -1);
         ImageView aabass = findViewById(R.id.aabass);
@@ -107,62 +115,86 @@ public class BattleActivity extends AppCompatActivity {
         fightButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(final View v) {
-                if (gym == 0.0) {
-                    trainerSetting(BattleActivity.this, "badge1", "yes");
-                    MainActivity.gotBadge1 = true;
-                } else if (gym == 1.0) {
-                    trainerSetting(BattleActivity.this, "badge2", "yes");
-                    MainActivity.gotBadge2 = true;
-                } else if (gym == 2.0) {
-                    trainerSetting(BattleActivity.this, "badge3", "yes");
-                    MainActivity.gotBadge3 = true;
-                } else if (gym == 3.0) {
-                    trainerSetting(BattleActivity.this, "badge4", "yes");
-                    MainActivity.gotBadge4 = true;
-                } else if (gym == 4.0) {
-                    trainerSetting(BattleActivity.this, "badge5", "yes");
-                    MainActivity.gotBadge5 = true;
-                } else if (gym == 5.0) {
-                    trainerSetting(BattleActivity.this, "badge6", "yes");
-                    MainActivity.gotBadge6 = true;
-                } else if (gym == 6.0) {
-                    trainerSetting(BattleActivity.this, "badge7", "yes");
-                    MainActivity.gotBadge7 = true;
-                } else if (gym == 7.0) {
-                    trainerSetting(BattleActivity.this, "badge8", "yes");
-                    MainActivity.gotBadge8 = true;
+                int oppHealth = opponentHealth.getProgress();
+                int minus = oppHealth - 33;
+                while (oppHealth >= minus) {
+                    final int oh = oppHealth;
+                    //opponentHealth.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                    new CountDownTimer(6450, 100000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            opponentHealth.setProgress(oh);
+                        }
+
+                        @Override
+                        public void onFinish() {
+                        }
+                    }.start();
+                    oppHealth--;
                 }
-                if (MainActivity.gotBadge1 && MainActivity.gotBadge2 && MainActivity.gotBadge3
-                        && MainActivity.gotBadge4 && MainActivity.gotBadge5 && MainActivity.gotBadge6
-                        && MainActivity.gotBadge7 && MainActivity.gotBadge8) {
-                    trainerSetting(BattleActivity.this, "nordle", "yes");
-                    MainActivity.gotNordle = true;
-                }
-                if (fxSoundOn) {
-                    victoryMusic.start();
-                }
+
                 final TextView reText = findViewById(R.id.battleText);
                 reText.setText("YOUR POKEMON ATTACKS...");
-                CountDownTimer timer = new CountDownTimer(2000, 1000) {
+
+                final int oh = oppHealth;
+                new CountDownTimer(1500, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
                     }
 
                     @Override
                     public void onFinish() {
-                        battleMusic.pause();
-                        reText.setText("THE OTHER POKEMON FAINTED. YOU WON!");
-                    }
-                }.start();
-                CountDownTimer time = new CountDownTimer(4450, 1000) {
-                    @Override
-                    public void onTick(long millisUntilFinished) {
-                    }
+                        if (oh <= 0) {
+                            battleMusic.pause();
+                            reText.setText("THE OTHER POKEMON FAINTED. YOU WON!");
+                            if (gym == 0.0) {
+                                trainerSetting(BattleActivity.this, "badge1", "yes");
+                                MainActivity.gotBadge1 = true;
+                            } else if (gym == 1.0) {
+                                trainerSetting(BattleActivity.this, "badge2", "yes");
+                                MainActivity.gotBadge2 = true;
+                            } else if (gym == 2.0) {
+                                trainerSetting(BattleActivity.this, "badge3", "yes");
+                                MainActivity.gotBadge3 = true;
+                            } else if (gym == 3.0) {
+                                trainerSetting(BattleActivity.this, "badge4", "yes");
+                                MainActivity.gotBadge4 = true;
+                            } else if (gym == 4.0) {
+                                trainerSetting(BattleActivity.this, "badge5", "yes");
+                                MainActivity.gotBadge5 = true;
+                            } else if (gym == 5.0) {
+                                trainerSetting(BattleActivity.this, "badge6", "yes");
+                                MainActivity.gotBadge6 = true;
+                            } else if (gym == 6.0) {
+                                trainerSetting(BattleActivity.this, "badge7", "yes");
+                                MainActivity.gotBadge7 = true;
+                            } else if (gym == 7.0) {
+                                trainerSetting(BattleActivity.this, "badge8", "yes");
+                                MainActivity.gotBadge8 = true;
+                            }
+                            if (MainActivity.gotBadge1 && MainActivity.gotBadge2 && MainActivity.gotBadge3
+                                    && MainActivity.gotBadge4 && MainActivity.gotBadge5 && MainActivity.gotBadge6
+                                    && MainActivity.gotBadge7 && MainActivity.gotBadge8) {
+                                trainerSetting(BattleActivity.this, "nordle", "yes");
+                                MainActivity.gotNordle = true;
+                            }
+                            if (fxSoundOn) {
+                                victoryMusic.start();
+                            }
+                            new CountDownTimer(4450, 1000) {
+                                @Override
+                                public void onTick(long millisUntilFinished) {
+                                }
 
-                    @Override
-                    public void onFinish() {
-                        finish();//go back to the previous Activity
-                        overridePendingTransition(R.anim.fade_battle_in, R.anim.fade_battle_out);
+                                @Override
+                                public void onFinish() {
+                                    finish();//go back to the previous Activity
+                                    overridePendingTransition(R.anim.fade_battle_in, R.anim.fade_battle_out);
+                                }
+                            }.start();
+                        } else {
+                            reText.setText("WHAT WILL " + MainActivity.getYourName().toUpperCase() + " DO?");
+                        }
                     }
                 }.start();
             }
